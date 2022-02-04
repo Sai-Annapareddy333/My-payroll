@@ -1,0 +1,40 @@
+package com.fss.beans;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ManagePayroll {
+
+	public static void main(String[] args) throws IOException {
+
+		MPayroll marray[] = new MPayroll[6];
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+	
+			MPayroll m = new MPayroll(0, 0, 0, 0, 0, 0);
+			System.out.println("Enter Employee ID:");
+			m.setEmployeeId(Integer.parseInt(br.readLine()));
+			System.out.println("Enter Basic Pay:");
+			m.setBasicpay(Float.parseFloat(br.readLine()));
+			System.out.println("Enter House Rent Allowance:");
+			m.setHra(Float.parseFloat(br.readLine()));
+			System.out.println("Enter Special Allowance:");
+			m.setSp_allowance(Float.parseFloat(br.readLine()));
+			System.out.println("Enter Bonus:");
+			m.setBonus(Float.parseFloat(br.readLine()));
+			System.out.println("Enter Provident Fund:");
+			m.setPf_amnt(Float.parseFloat(br.readLine()));
+			
+		    System.out.println();
+			System.out.println("EmployeeID     :  " + m.getEmployeeId());
+			System.out.println("Basic_Pay      :  " + m.getBasicpay());
+			System.out.println("HRA            :  " + m.getHra());
+			System.out.println("Spcl_Allowance :  " + m.getSp_allowance());
+			System.out.println("Bonus          :  " + m.getBonus());
+			System.out.println("Provident Fund :  " + m.getPf_amnt());
+
+		
+	}
+
+}
