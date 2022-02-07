@@ -1,37 +1,42 @@
 package com.fss.beans;
 
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
-public class Employee {
-	int id;
-	String name;
-
-	String desig;
-	float salary;
-
-	public static void main(String args[]) throws IOException {
-		try (Scanner sc = new Scanner(System.in)) {
-			System.out.print("How many employees? ");
-			int n = sc.nextInt();
-			Employee emp[] = new Employee[n];
-			for (int i = 0; i < n; i++) {
-				emp[i] = new Employee();
-				System.out.println("Enter " + (i + 1) + " Employee data :");
-				System.out.print("Enter employee id :");
-				emp[i].id = sc.nextInt();
-				System.out.print("Enter employee name :");
-				emp[i].name = sc.next();
-				System.out.print("Enter employee designation :");
-				emp[i].desig = sc.next();
-				System.out.print("Enter employee salary :");
-				emp[i].salary = sc.nextFloat();
-			}
-			System.out.println("\n\n All Employee Details are :\n");
-			for (int i = 0; i < n; i++) {
-				System.out.println("Employee id, Name, Designation and Salary :" + emp[0].id + " " + emp[i].name + " "
-						+ emp[i].desig + " " + emp[i].salary);
-			}
-		}
+public class DbViewemp {
+public static void main (String[] args) throws Exception {
+		
+		
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+		
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");   
+        String ename,edesig,eaddress,eemail;
+        int empId=0,phone=0;
+        float salary=0;
+		
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/pms","root","40540633@Sai");
+		
+		PreparedStatement stmt=con.prepareStatement("select * from employee");
+		
+		ResultSet rs = stmt.executeQuery();
+		System.out.println("Emp Id  Emo_Name  Emp_Desig       Emp_Salary    Emp_Address   Emp_Email       Emp_Phone");
+		while(rs.next()) 
+			
+			System.out.println(rs.getString(1)+"        "+rs.getString(2)+"       "+rs.getString(3)+"      "+rs.getString(4)+"      "+rs.getString(5)+"     "+rs.getString(6)+"     "+rs.getString(7));
+		    
+	 
+	   
+	    int i=stmt.executeUpdate();
+	    System.out.println("Employee Details Registered Successfully......");
+	   
+	    
+}catch(Exception e) {System.out.println(e);
+}
 	}
+
 }
